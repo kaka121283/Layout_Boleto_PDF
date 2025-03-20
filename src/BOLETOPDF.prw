@@ -50,17 +50,17 @@ Local  VMARGEM :=  030
 
 Local cBanco   := "033"
 Local cLinDig  := "123456789123456789123458912345678912315469789132154987888"
-Local cAgencia := "3025"
+Local cAgencia := "1234"
 Local cConven  := "22222222"
 Local cConta   := "111111-2"
-Local cNumBco  := "0123456789"
+Local cNumBco  := "0123456780123"
 Local cNumTit  := "002 123456789 001"
 Local nValBol  := 50200.55
-Local nDescre  := 1.5
+Local nDescre  := 
 Local cNomeCli := "ADVPL"
 Local cEndCli  := "RUA TESTE DOS SANTOS, 1050"
 Local cCep     := "12345-236"
-Local cMunic   := "S√O PAULO"
+Local cMunic   := "S√ÉO PAULO"
 Local cUF      := "SP"
 Local cNomEmp  := "DESENVOLVENDO LAYOUT BOLETO PDF"
 Local cMsgBol  := "Mensagem para Boleto"
@@ -70,10 +70,10 @@ Local dDtaEmis := Date()
 Local dDtaVenc := Date()+15
 Local cUsoBco  := "BCO"
 Local cCodCart := "101"
-Local cInstru1 := "InstruÁ„o 1"
-Local cInstru2 := "InstruÁ„o 2"
-Local cInstru3 := "InstruÁ„o 3"
-Local cInstru4 := "InstruÁ„o 4"
+Local cInstru1 := "Instru√ß√£o 1"
+Local cInstru2 := "Instru√ß√£o 2"
+Local cInstru3 := "Instru√ß√£o 3"
+Local cInstru4 := "Instru√ß√£o 4"
 Local cCodBar := "12348912315469789135678923456789124589123456"
 Local cArquivoPDF := "santander.rel"
 Local cLogoBco := "C:\CNAB\santander.png"
@@ -81,7 +81,7 @@ Local cLogoBco := "C:\CNAB\santander.png"
 Local oBoleto
 
 	// ----------------------------------------------------------------+
-	// Define saida de impress„o                                       |
+	// Define saida de impress√£o                                       |
 	// ----------------------------------------------------------------+			
 	oBoleto := FWMSPrinter():New(cArquivoPDF, IMP_PDF, .F.,, .T., , , , , , .F., )	
 	oBoleto:SetResolution(78) 
@@ -145,31 +145,31 @@ Local oBoleto
 	//+----------------+
 	oBoleto:SayBitmap( 005, 030, cLogoBco, 90, 40)
 
-	// Banco e Linha Digit·vel
+	// Banco e Linha Digit√°vel
 	//oBoleto:Say(034,032, cNomeBco+" | "+cBanco+" | ", oFont18N)
 	oBoleto:Say(030,130, " | "+cBanco+" | ", oFont18N)
 	oBoleto:Say(034,240, Transform(cLinDig, "@R 99999.99999 99999.999999 99999.999999 9 99999999999999"), oFont14N) 			// --> LINHA DIGITAVEL CB  ( 23790.12301 60000.000038 78000.456703 3 49130000042790 )
 
 	oBoleto:Say(034,505, "Recibo do Sacado", oFont12N)
 
-	// TÌtulos da primeira linha de boxes
+	// T√≠tulos da primeira linha de boxes
 	oBoleto:Say(044,032, "Vencimento", oFont07)
 
 	// Mudanca no texto do boleto solicitado pelo SAFRA
 	IF cBanco $ "033/353/422"
-		oBoleto:Say(044,146, "AgÍncia/CÛdigo do Beneficiario", oFont07)
+		oBoleto:Say(044,146, "Ag√™ncia/C√≥digo do Beneficiario", oFont07)
 	 ELSE
-		oBoleto:Say(044,146, "AgÍncia/CÛdigo do Cedente", oFont07)
+		oBoleto:Say(044,146, "Ag√™ncia/C√≥digo do Cedente", oFont07)
 	ENDIF
 
-	oBoleto:Say(044,291, "N˙mero do Documento", oFont07)
-	oBoleto:Say(044,435, "Nosso N˙mero/CÛdigo do Documento", oFont07)
+	oBoleto:Say(044,291, "N√∫mero do Documento", oFont07)
+	oBoleto:Say(044,435, "Nosso N√∫mero/C√≥digo do Documento", oFont07)
 
-	// TÌtulos da segunda linha de boxes
+	// T√≠tulos da segunda linha de boxes
 	        //  Lin Col
 	oBoleto:Say(064,032, "Valor do Documento", oFont07)
 	oBoleto:Say(064,146, "(-) Descontos", oFont07)
-	oBoleto:Say(064,291, "(+) AcrÈscimos", oFont07)
+	oBoleto:Say(064,291, "(+) Acr√©scimos", oFont07)
 	oBoleto:Say(064,435, "(=) Valor Cobrado", oFont07)
 
 	// Dados da primeira linha de boxes
@@ -195,7 +195,7 @@ Local oBoleto
 	//---------------------------------------------------------------------------+
 	oBoleto:Say(086,032, "Sacado", oFont07)
 
-	//oBoleto:Say(086,435, "------------------- AutenticaÁ„o Mec‚nica -------------------", oFont07)
+	//oBoleto:Say(086,435, "------------------- Autentica√ß√£o Mec√¢nica -------------------", oFont07)
 
 	oBoleto:Say(088         , 080, cNomeCli, oFont12)
 	oBoleto:Say(088 + 10    , 080, cEndCli, oFont12)
@@ -218,10 +218,10 @@ Local oBoleto
 	oBoleto:Say(n_Lin,VMARGEM, Replicate("-",177), oFont12)
 
 	//---------------------------------------------------------------------------+
-	// Desenha o Boleto (Ficha de CompensaÁ„o).                                  |
+	// Desenha o Boleto (Ficha de Compensa√ß√£o).                                  |
 	//---------------------------------------------------------------------------+
 
-	// Banco e Linha Digit·vel
+	// Banco e Linha Digit√°vel
 	n_Lin += 20
 	
 	//+----------------+
@@ -296,10 +296,10 @@ Local oBoleto
 
 	// Autenticacao
 	n_Lin += 60 + n_hLin + 7
-	oBoleto:Say(n_Lin,435, "AutenticaÁ„o Mec‚nica/Ficha de CompensaÁ„o", oFont07)
+	oBoleto:Say(n_Lin,435, "Autentica√ß√£o Mec√¢nica/Ficha de Compensa√ß√£o", oFont07)
 
 	//---------------------------------------------------------------------------+
-	// TÌtulo dos Quadros da Ficha de Compensacao                                |
+	// T√≠tulo dos Quadros da Ficha de Compensacao                                |
 	//---------------------------------------------------------------------------+
 
 	// 1a. Linha
@@ -318,7 +318,7 @@ Local oBoleto
 
 	n_Col := 418
 
-	oBoleto:Say(n_Lin, n_Col, "AgÍncia/CÛdigo do Beneficiario", oFont07)
+	oBoleto:Say(n_Lin, n_Col, "Ag√™ncia/C√≥digo do Beneficiario", oFont07)
 
 	// 3a. Linha
 	n_Lin += n_hLin
@@ -326,10 +326,10 @@ Local oBoleto
 	oBoleto:Say(n_Lin, n_Col, "Data do Documento", oFont07)
 
 	n_Col := 102
-	oBoleto:Say(n_Lin, n_Col, "N˙mero do Documento", oFont07)
+	oBoleto:Say(n_Lin, n_Col, "N√∫mero do Documento", oFont07)
 
 	n_Col := 232
-	oBoleto:Say(n_Lin, n_Col, "EspÈcie Doc.", oFont07)
+	oBoleto:Say(n_Lin, n_Col, "Esp√©cie Doc.", oFont07)
 
 	n_Col := 282
 	oBoleto:Say(n_Lin, n_Col, "Aceite", oFont07)
@@ -338,7 +338,7 @@ Local oBoleto
 	oBoleto:Say(n_Lin, n_Col, "Data do Processamento", oFont07)
 
 	n_Col := 417
-	oBoleto:Say(n_Lin, n_Col, "Nosso N˙mero", oFont07)
+	oBoleto:Say(n_Lin, n_Col, "Nosso N√∫mero", oFont07)
 
 	// 4a. Linha
 	n_Lin += n_hLin
@@ -349,7 +349,7 @@ Local oBoleto
 	oBoleto:Say(n_Lin, n_Col, "Carteira", oFont07)
 
 	n_Col := 167
-	oBoleto:Say(n_Lin, n_Col, "EspÈcie", oFont07)
+	oBoleto:Say(n_Lin, n_Col, "Esp√©cie", oFont07)
 
 	n_Col := 232
 	oBoleto:Say(n_Lin, n_Col, "Quantidade", oFont07)
@@ -360,7 +360,7 @@ Local oBoleto
 	n_Col := 417
 	oBoleto:Say(n_Lin, n_Col, "(=) Valor do Documento", oFont07)
 
-	oBoleto:Say(n_Lin+21,VMARGEM+2, "InstruÁıes - Texto de Responsabilidade do Cedente", oFont07)
+	oBoleto:Say(n_Lin+21,VMARGEM+2, "Instru√ß√µes - Texto de Responsabilidade do Cedente", oFont07)
 
 	n_SavLin2 := n_Lin
 
@@ -372,7 +372,7 @@ Local oBoleto
 	// 6a. Linha (Coluna Direita)
 	n_Lin += n_hLin
 	n_Col := 417
-	oBoleto:Say(n_Lin, n_Col, "(-) Outras DeduÁıes", oFont07)
+	oBoleto:Say(n_Lin, n_Col, "(-) Outras Dedu√ß√µes", oFont07)
 
 	// 7a. Linha (Coluna Direita)
 	n_Lin += n_hLin
@@ -382,7 +382,7 @@ Local oBoleto
 	// 8a. Linha (Coluna Direita)
 	n_Lin += n_hLin
 	n_Col := 417
-	oBoleto:Say(n_Lin, n_Col, "(+) Outros AcrÈscimos", oFont07)
+	oBoleto:Say(n_Lin, n_Col, "(+) Outros Acr√©scimos", oFont07)
 
 	// 9a. Linha (Coluna Direita)
 	n_Lin += n_hLin
@@ -437,31 +437,31 @@ Local oBoleto
 	n_Col := 480
 	oBoleto:Say(n_Lin, n_Col, Transform(nValBol, PesqPict("SE1","E1_SALDO")), oFont12)
 
-	// 5a. Linha (Coluna ‡ direita)
+	// 5a. Linha (Coluna √† direita)
 	n_Lin += n_hLin
 	n_Col := 480
 	If nDescre > 0
 	    oBoleto:Say(n_Lin, n_Col, Transform(nDescre, PesqPict("SE1","E1_DECRESC")), oFont12)
 	EndIf
 
-	// 6a. Linha (Coluna ‡ direita)
-	// --> Outros acrÈscimos - nao sera impressa
+	// 6a. Linha (Coluna √† direita)
+	// --> Outros acr√©scimos - nao sera impressa
 	n_Lin += n_hLin
 
-	//7a. Linha (Coluna ‡ direita)
-	n_Lin += n_hLin
-	n_Col := 480
-
-	//8a. Linha (Coluna ‡ direita)
+	//7a. Linha (Coluna √† direita)
 	n_Lin += n_hLin
 	n_Col := 480
 
-	//9a. Linha  (Coluna ‡ direita)
+	//8a. Linha (Coluna √† direita)
+	n_Lin += n_hLin
+	n_Col := 480
+
+	//9a. Linha  (Coluna √† direita)
 	n_Lin += n_hLin
 	n_Col := 480
 
 	//---------------------------------------------------------------------------+
-	// Texto/Box (InstruÁıes Banc·rias).                                         |
+	// Texto/Box (Instru√ß√µes Banc√°rias).                                         |
 	//---------------------------------------------------------------------------+
 	n_hLin := 10
 	n_Lin  := n_SavLin2 + (4* n_hLin ) - 5
@@ -480,9 +480,9 @@ Local oBoleto
 	n_Lin += 10
 
 	//n_Lin += n_hLin
-	oBoleto:Say(n_Lin+10, n_Col, "PARA REGULARIZA«√O DE PROTESTO POR FAVOR ACESSAR O SITE:", oFont12)
+	oBoleto:Say(n_Lin+10, n_Col, "PARA REGULARIZA√á√ÉO DE PROTESTO POR FAVOR ACESSAR O SITE:", oFont12)
 	//n_Lin += n_hLin
-	oBoleto:Say(n_Lin+20, n_Col, "https://protestosp.com.br/, clicar na opÁ„o SERVI«OS ELETRONICOS DE", oFont12)
+	oBoleto:Say(n_Lin+20, n_Col, "https://protestosp.com.br/, clicar na op√ß√£o SERVI√áOS ELETRONICOS DE", oFont12)
 	//n_Lin += n_hLin
 	oBoleto:Say(n_Lin+30, n_Col, "PROTESTO, EFETUAR O CADASTRO E PAGAR O BOLETO.", oFont12)
 
@@ -503,12 +503,12 @@ Local oBoleto
 	n_Lin += 12
 
 	//---------------------------------------------------------------------------+
-	// CÛdigo de Barras                                                          |
+	// C√≥digo de Barras                                                          |
 	//---------------------------------------------------------------------------+	
 	oBoleto:FwMsBar("INT25", 37, 2.5, cCodBar, oBoleto, .F., CLR_BLACK,.T.,0.02,0.8,.F.)
 
 	//---------------------------------------------------------------------------+
-	// Finalizar a P·gina.                                                       |
+	// Finalizar a P√°gina.                                                       |
 	//---------------------------------------------------------------------------+
 	oBoleto:EndPage()
 
